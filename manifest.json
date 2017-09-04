@@ -1,0 +1,28 @@
+{
+  "manifest_version" : 2,
+
+  "name" : "User Activity Tracker",
+  "description" : "This extension tracks user activity on stackoverflow website for an assignment",
+  "version" : "1.0",
+
+  "browser_action" : {
+    "default_icon" : "icon.png",
+    "default_popup" : "popup.html"
+  },
+  "permissions" : [
+    "background",
+    "cookies",
+    "activeTab",
+    "https://ajax.googleapis.com/"
+  ],
+  "background" : {
+    "scripts" : ["jquery.js" ,"background.js"],
+    "persistent" : true
+  },
+  "content_scripts" : [{
+    "matches" : ["*://*.stackoverflow.com/*"],
+    "js" : ["jquery.js", "content.js"],
+    "run_at" : "document_idle",
+    "all_frames" : false
+  }]
+}
